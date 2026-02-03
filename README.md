@@ -2,7 +2,6 @@
 ### JavaScript Array CRUD Operations
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-Run-green?style=for-the-badge&logo=node.js&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
 ---
@@ -15,7 +14,7 @@
 ## 📹 Video Demonstration
 I have recorded a video explaining the logic, CRUD functions, and array methods used in this project.
 
-### [▶️ CLICK HERE TO WATCH THE DEMO VIDEO]([PASTE_YOUR_VIDEO_LINK_HERE](https://www.youtube.com/watch?v=Qjny-G2yrrg))
+### [▶️ CLICK HERE TO WATCH THE DEMO VIDEO](https://www.youtube.com/watch?v=Qjny-G2yrrg)
 
 *(Replace the text "PASTE_YOUR_VIDEO_LINK_HERE" above with your actual YouTube or Loom link)*
 
