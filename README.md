@@ -1,57 +1,47 @@
+# 🎓 Student Management System
+### JavaScript Array CRUD Operations
 
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?style=for-the-badge&logo=javascript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Run-green?style=for-the-badge&logo=node.js&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-# Student Management System (JavaScript Arrays CRUD)
+---
 
-A pure JavaScript Student Management System developed to demonstrate proficiency in Array manipulation, CRUD operations, filtering, and sorting logic.
+## 👤 Author
+**Levi Gatimu Ngugi** *Student @ New Generation Academy*
 
-## 📋 Project Description
-This project manages a list of students using an array of objects. It follows a strict "No External Libraries" and "No Express" rule, focusing entirely on core JavaScript logic and console-based output.
+---
 
-## 🚀 How to Run
-1. Ensure you have **Node.js** installed on your computer.
-2. Open your terminal or command prompt.
-3. Navigate to the folder where the file is saved.
-4. Run the following command:
-   ```bash
-   node "JS final.js"
-🛠️ Features
-Create: Add students with strict validation (checks for empty names, valid age, gender, and duplicate entries).
+## 📹 Video Demonstration
+I have recorded a video explaining the logic, CRUD functions, and array methods used in this project.
 
-Read: Retrieve the full list of students or find a specific student by their unique ID.
+### [▶️ CLICK HERE TO WATCH THE DEMO VIDEO]([PASTE_YOUR_VIDEO_LINK_HERE](https://www.youtube.com/watch?v=Qjny-G2yrrg))
 
-Update: Modify existing student data while ensuring the ID remains unchanged.
+*(Replace the text "PASTE_YOUR_VIDEO_LINK_HERE" above with your actual YouTube or Loom link)*
 
-Delete: Remove students from the system with a confirmation message.
+---
 
-Filter & Sort:
+## 📝 Project Description
+This project is a **Student Management System** built entirely with **Vanilla JavaScript**. It demonstrates how to manipulate data structures without external libraries.
 
-Filter students by gender (Male).
+The system manages a list of student objects and performs **CRUD** (Create, Read, Update, Delete) operations, along with advanced data analysis using `filter`, `sort`, and `reduce`.
 
-Sort students alphabetically by name.
+### ✨ Features
+* ✅ **Create:** Add new students with strict validations (No duplicates, valid age/gender).
+* ✅ **Read:** View all students or search for a specific student by ID.
+* ✅ **Update:** Modify existing student details while keeping the ID locked.
+* ✅ **Delete:** Remove students safely using array filtering.
+* ✅ **Advanced Sorting:** Sort students alphabetically (A-Z).
+* ✅ **Analytics:** Find the oldest student and count students by grade.
 
-Identify the oldest student using .reduce().
+---
 
-Count the total number of students in Grade 11.
+## 💻 How to Run
+You can run this project directly in your terminal using Node.js.
 
-📺 Presentation Video
-In this video, I explain the logic behind the CRUD functions and the array methods used (push, find, filter, sort, reduce).
+1.  **Clone the repository** (or download the files).
+2.  Open your terminal in the project folder.
+3.  Run the script:
 
-Watch here: https://www.youtube.com/watch?v=Qjny-G2yrrg
-
-📸 Project Screenshots
-Note: As this project is built without a server (No Express), screenshots demonstrate the system output in the VS Code Terminal.
-
-🧠 Array Methods Used
-push(): For adding new student objects to the array.
-
-find(): For retrieving a specific student and checking for duplicates.
-
-filter(): For deleting students and filtering by gender or grade.
-
-sort(): For alphabetizing the student list.
-
-reduce(): For calculating the oldest student in the array.
-
-Submitted by: Levi Gatimu Topic: JavaScript Arrays CRUD, Filters & Sorting
-
-
+```bash
+node script.js
