@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Management CRUD</title>
+
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .box{
+      box-shadow: 0px 8px 25px grey;
+      border-radius: 10px;
+      margin: 80px auto;
+      width: 380px;
+      padding: 20px;
+    }
+    input, select, button{
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid;
+      outline: none;
+      padding: 10px;
+      margin-top: 6px;
+      background: white;
+    }
+    button{
+      border: none;
+      border-radius: 10px;
+      background-color: lightblue;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    hr{ margin: 18px 0; }
+    small{ color: gray; }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h2>Student CRUD</h2>
+    <small>Open Console (F12) to see results</small>
+
+    <hr>
+
+    <h3>1) CREATE – Add Student</h3>
+    <input id="name" type="text" placeholder="Name">
+    <input id="age" type="number" placeholder="Age">
+    <select id="gender">
+      <option value="">Select Gender</option>
+      <option value="male">male</option>
+      <option value="female">female</option>
+    </select>
+    <input id="grade" type="number" placeholder="Grade">
+    <button id="addBtn">Add Student</button>
+
+    <hr>
+
+    <h3>Console Buttons</h3>
+    <button id="allBtn">2a) Get All Students</button>
+    <button id="maleBtn">5a) Get Male Students</button>
+    <button id="sortBtn">5b) Sort Students A–Z</button>
+    <button id="oldestBtn">5c) Show Oldest Student</button>
+    <button id="count11Btn">5d) Count Grade 11</button>
+
+    <hr>
+
+    <h3>Quick Test (Update/Delete)</h3>
+    <small>These use ID = 1 just to demonstrate quickly in console.</small>
+    <button id="updateBtn">3) Update Student (id=1)</button>
+    <button id="deleteBtn">4) Delete Student (id=1)</button>
+    <button id="byIdBtn">2b) Get Student By ID (id=1)</button>
+  </div>
+<div class="BORDE" style="border-bottom: 1px solid;"></div>
+  <script>
+    // Starter Data 
+    let students = [
+      { id: 1, name: "Mugisha Yvan", age: 18, gender: "male", grade: 11 },
+      { id: 2, name: "Shimwa Jane", age: 17, gender: "female", grade: 10 },
+      { id: 3, name: "Manzi Smith", age: 19, gender: "male", grade: 11 }
+    ];
+
+    // Helper: next id (safe even after deletions)
+    function getNextId() {
+      if (students.length === 0) return 1;
+      return students[students.length - 1].id + 1;
+    }
+
+    // 1. CREATE – Add a Student (4 Marks)
+    function addStudent(name, age, gender, grade) {
+      name = String(name).trim();
+      age = Number(age);
+      grade = Number(grade);
+      gender = String(gender).trim().toLowerCase();
+
+      if (name === "") {
+        console.log("❌ Name must not be empty");
+        return;
+      }
+      if (Number.isNaN(age) || age <= 0) {
+        console.log("❌ Age must be a number greater than 0");
+        return;
+      }
+      if (gender !== "male" && gender !== "female") {
+        console.log('❌ Gender must be "male" or "female"');
+        return;
+      }
+      if (Number.isNaN(grade)) {
+        console.log("❌ Grade must be a number");
+        return;
+      }
+
+      const duplicate = students.some(s => s.name.toLowerCase() === name.toLowerCase());
+      if (duplicate) {
+        console.log("❌ Do not allow duplicate names");
+        return;
+      }
+
+      const newStudent = {
+        id: getNextId(),
+        name,
+        age,
+        gender,
+        grade
+      };
+
+      students.push(newStudent);
+      console.log("✅ Student added:", newStudent);
+      console.log("Updated students:", students);
+    }
+
+    // 2. READ – Get Students (4 Marks)
+    // a) Get all students
+    function getStudents() {
+      console.log("✅ All students:", students);
+      return students;
+    }
+
+    // b) Get student by id
+    function getStudentById(id) {
+      id = Number(id);
+      const student = students.find(s => s.id === id);
+
+      if (!student) {
+        console.log("Student not found");
+        return null;
+      }
+
+      console.log("✅ Found student:", student);
+      return student;
+    }
+
+    // 3. UPDATE – Update a Student (4 Marks)
+    function updateStudent(id, newName, newAge, newGender, newGrade) {
+      id = Number(id);
+
+      const student = students.find(s => s.id === id);
+      if (!student) {
+        console.log("Student not found");
+        return;
+      }
+
+      newName = String(newName).trim();
+      newAge = Number(newAge);
+      newGrade = Number(newGrade);
+      newGender = String(newGender).trim().toLowerCase();
+
+      if (newName === "") {
+        console.log("❌ Name must not be empty");
+        return;
+      }
+      if (Number.isNaN(newAge) || newAge <= 0) {
+        console.log("❌ Age must be a number greater than 0");
+        return;
+      }
+      if (newGender !== "male" && newGender !== "female") {
+        console.log('❌ Gender must be "male" or "female"');
+        return;
+      }
+      if (Number.isNaN(newGrade)) {
+        console.log("❌ Grade must be a number");
+        return;
+      }
+
+      // Prevent duplicate name (excluding the same student)
+      const duplicate = students.some(s =>
+        s.id !== id && s.name.toLowerCase() === newName.toLowerCase()
+      );
+      if (duplicate) {
+        console.log("❌ Do not allow duplicate names");
+        return;
+      }
+
+      // id must not be changed
+      student.name = newName;
+      student.age = newAge;
+      student.gender = newGender;
+      student.grade = newGrade;
+
+      console.log("✅ Student updated:", student);
+      console.log("Updated students:", students);
+    }
+
+    // 4. DELETE – Delete a Student (2 Marks)
+    function deleteStudent(id) {
+      id = Number(id);
+      const index = students.findIndex(s => s.id === id);
+
+      if (index === -1) {
+        console.log("Student not found");
+        return;
+      }
+
+      const removed = students.splice(index, 1)[0];
+      console.log(`✅ Student deleted: ${removed.name} (id=${removed.id})`);
+      console.log("Updated students:", students);
+    }
+
+    // 5. FILTER & SORT TASKS (4 Marks)
+    // a) Filter male students
+    function getMaleStudents() {
+      const males = students.filter(s => s.gender === "male");
+      console.log("✅ Male students:", males);
+      return males;
+    }
+
+    // b) Sort students by name (A–Z)
+    function sortStudentsByName() {
+      const sorted = [...students].sort((a, b) => a.name.localeCompare(b.name));
+      console.log("✅ Students sorted by name A–Z:", sorted);
+      return sorted;
+    }
+
+    // c) Show the oldest student
+    function getOldestStudent() {
+      if (students.length === 0) {
+        console.log("Student not found");
+        return null;
+      }
+
+      let oldest = students[0];
+      for (let s of students) {
+        if (s.age > oldest.age) oldest = s;
+      }
+
+      console.log("✅ Oldest student:", oldest);
+      return oldest;
+    }
+
+    // d) Count total number of students in Grade 11
+    function countGrade11Students() {
+      const count = students.filter(s => s.grade === 11).length;
+      console.log("✅ Total Grade 11 students:", count);
+      return count;
+    }
+
+    // -----------------------------
+    // Simple UI hookups (buttons)
+    // -----------------------------
+    document.getElementById("addBtn").addEventListener("click", () => {
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+      const grade = document.getElementById("grade").value;
+
+      addStudent(name, age, gender, grade);
+    });
+
+    document.getElementById("allBtn").addEventListener("click", () => getStudents());
+    document.getElementById("maleBtn").addEventListener("click", () => getMaleStudents());
+    document.getElementById("sortBtn").addEventListener("click", () => sortStudentsByName());
+    document.getElementById("oldestBtn").addEventListener("click", () => getOldestStudent());
+    document.getElementById("count11Btn").addEventListener("click", () => countGrade11Students());
+
+    // quick demo buttons
+    document.getElementById("updateBtn").addEventListener("click", () => {
+      updateStudent(1, "Mugisha Yvan Updated", 20, "male", 11);
+    });
+
+    document.getElementById("deleteBtn").addEventListener("click", () => {
+      deleteStudent(1);
+    });
+
+    document.getElementById("byIdBtn").addEventListener("click", () => {
+      getStudentById(1);
+    });
+
+    // show starter data in console first
+    console.log("Starter students:", students);
+  </script>
+</body>
+</html>
