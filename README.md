@@ -16,7 +16,7 @@ I have recorded a video explaining the logic, CRUD functions, and array methods 
 
 ### [▶️ CLICK HERE TO WATCH THE DEMO VIDEO](https://www.youtube.com/watch?v=Qjny-G2yrrg)
 
-*(Replace the text "PASTE_YOUR_VIDEO_LINK_HERE" above with your actual YouTube or Loom link)*
+
 
 ---
 
